@@ -1,4 +1,4 @@
-package ru.code.tasktracker.models.Task;
+package ru.code.tasktracker.models.task;
 
 public enum TaskStatus
 {

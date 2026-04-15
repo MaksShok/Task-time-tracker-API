@@ -3,10 +3,10 @@ package ru.code.tasktracker.exception;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler
 {
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
@@ -17,4 +17,6 @@ public class GlobalExceptionHandler
         log.error("Handle exception ", e);
         return ResponseEntity.status(500).body(e.getMessage());
     }
+
+
 }
