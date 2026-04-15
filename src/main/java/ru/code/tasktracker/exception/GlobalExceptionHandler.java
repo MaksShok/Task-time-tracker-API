@@ -1,4 +1,4 @@
-﻿package ru.code.tasktracker.exception;
+package ru.code.tasktracker.exception;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

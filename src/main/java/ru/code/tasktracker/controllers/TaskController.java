@@ -1,4 +1,4 @@
-﻿package ru.code.tasktracker.controllers;
+package ru.code.tasktracker.controllers;
 
 import jakarta.validation.Valid;
 import org.springframework.validation.BindingResult;
