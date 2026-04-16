@@ -19,7 +19,7 @@ public class TaskService
 
     public Task createTask(CreateTaskRequestInfo taskInfo)
     {
-        var task = new Task(taskInfo.name, taskInfo.description);
+        var task = new Task(taskInfo.getName(), taskInfo.getDescription());
         mapper.insert(task);
 
         if (task.getId() <= 0)

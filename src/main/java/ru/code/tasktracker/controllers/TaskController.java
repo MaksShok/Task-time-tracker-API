@@ -47,7 +47,7 @@ public class TaskController
 
         var task = service.getTaskById(id);
 
-        String message = "Get task response by " + id;
+        String message = "Get task response by id: " + id;
         return toResponce(HttpStatus.OK, task, message);
     }
 
@@ -60,7 +60,7 @@ public class TaskController
         if (id <= 0)
             throw new IllegalArgumentException("invalid ID");
 
-        var task = service.updateTaskStatus(id, request.status);
+        var task = service.updateTaskStatus(id, request.getStatus());
 
         String message = "Patch task status. New status - " + task.getStatus();
         return toResponce(HttpStatus.OK, task, message);
@@ -71,7 +71,7 @@ public class TaskController
             Task task,
             String message)
     {
-        log.info(String.format(message + ": %task", task));
+        log.info("{}: {}", message, task);
 
         var responseObj = new ApiResponse<Task>(task, message);
         return ResponseEntity.status(status).body(responseObj);

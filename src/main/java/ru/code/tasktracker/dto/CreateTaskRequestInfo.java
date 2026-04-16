@@ -6,14 +6,22 @@ import jakarta.validation.constraints.Size;
 public class CreateTaskRequestInfo
 {
     @NotBlank(message = "The task name should not be empty.")
-    public final String name;
+    private String name;
 
     @Size(max = 255)
-    public final String description;
+    private String description;
 
     public CreateTaskRequestInfo(String name, String description)
     {
         this.name = name;
         this.description = description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }
