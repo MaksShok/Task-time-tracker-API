@@ -2,7 +2,7 @@ package ru.code.tasktracker.models.task;
 
 public class Task
 {
-    private long id;
+    private long id = -1;
     private String name;
     private String description;
     private TaskStatus status;

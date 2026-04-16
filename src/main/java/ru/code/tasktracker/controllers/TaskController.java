@@ -3,10 +3,15 @@ package ru.code.tasktracker.controllers;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.code.tasktracker.dto.ApiResponse;
 import ru.code.tasktracker.dto.CreateTaskRequestInfo;
-import ru.code.tasktracker.exception.BadRequestException;
+import ru.code.tasktracker.dto.UpdateTaskStatusRequestInfo;
+import ru.code.tasktracker.exception.ValidationFailedException;
 import ru.code.tasktracker.models.task.Task;
 import ru.code.tasktracker.services.TaskService;
 
@@ -23,22 +28,52 @@ public class TaskController
     }
 
     @PostMapping
-    //@ResponseStatus(HttpStatus.CREATED)
-    public Task processCreateRequest(@Valid @RequestBody CreateTaskRequestInfo taskInfo, BindingResult valid)
+    public ResponseEntity<ApiResponse<Task>> createRequest(@Valid @RequestBody CreateTaskRequestInfo taskInfo, BindingResult valid)
     {
         if (valid.hasErrors())
-            throw new BadRequestException("Bad POST request");
+            throw new ValidationFailedException("Bad POST request");
 
         var task = service.createTask(taskInfo);
-        log.info("Create task response: {}", task);
-        return task;
+
+        String message = "Create task response";
+        return toResponce(HttpStatus.CREATED, task, message);
     }
 
     @GetMapping("/{id}")
-    public Task processGetByIdRequest(@PathVariable long id)
+    public ResponseEntity<ApiResponse<Task>> getByIdRequest(@PathVariable long id)
     {
-        var task = service.getTask(id);
-        log.info("Get task response: {}", task);
-        return task;
+        if (id <= 0)
+            throw new IllegalArgumentException("Invalid ID");
+
+        var task = service.getTaskById(id);
+
+        String message = "Get task response by " + id;
+        return toResponce(HttpStatus.OK, task, message);
+    }
+
+    @PatchMapping("/{id}/status/update")
+    public ResponseEntity<ApiResponse<Task>> patchStatus(@PathVariable long id, @Valid @RequestBody UpdateTaskStatusRequestInfo request, BindingResult valid)
+    {
+        if (valid.hasErrors())
+            throw new ValidationFailedException("Invalid PATCH request");
+
+        if (id <= 0)
+            throw new IllegalArgumentException("invalid ID");
+
+        var task = service.updateTaskStatus(id, request.status);
+
+        String message = "Patch task status. New status - " + task.getStatus();
+        return toResponce(HttpStatus.OK, task, message);
+    }
+
+    private ResponseEntity<ApiResponse<Task>> toResponce(
+            HttpStatusCode status,
+            Task task,
+            String message)
+    {
+        log.info(String.format(message + ": %task", task));
+
+        var responseObj = new ApiResponse<Task>(task, message);
+        return ResponseEntity.status(status).body(responseObj);
     }
 }
