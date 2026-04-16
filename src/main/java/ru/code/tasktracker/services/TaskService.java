@@ -50,4 +50,9 @@ public class TaskService
 
         return task;
     }
+
+    public Boolean isTaskExists(long id)
+    {
+        return mapper.existsById(id) != null;
+    }
 }

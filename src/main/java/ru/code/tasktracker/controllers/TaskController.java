@@ -4,7 +4,6 @@ import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +16,7 @@ import ru.code.tasktracker.services.TaskService;
 
 @RestController
 @RequestMapping("/task")
-public class TaskController
+public class TaskController extends BaseController
 {
     private static final Logger log = LoggerFactory.getLogger(TaskController.class);
     private final TaskService service;
@@ -36,7 +35,7 @@ public class TaskController
         var task = service.createTask(taskInfo);
 
         String message = "Create task response";
-        return toResponce(HttpStatus.CREATED, task, message);
+        return toResponse(HttpStatus.CREATED, task, message);
     }
 
     @GetMapping("/{id}")
@@ -48,7 +47,7 @@ public class TaskController
         var task = service.getTaskById(id);
 
         String message = "Get task response by id: " + id;
-        return toResponce(HttpStatus.OK, task, message);
+        return toResponse(HttpStatus.OK, task, message);
     }
 
     @PatchMapping("/{id}/status/update")
@@ -63,17 +62,11 @@ public class TaskController
         var task = service.updateTaskStatus(id, request.getStatus());
 
         String message = "Patch task status. New status - " + task.getStatus();
-        return toResponce(HttpStatus.OK, task, message);
+        return toResponse(HttpStatus.OK, task, message);
     }
 
-    private ResponseEntity<ApiResponse<Task>> toResponce(
-            HttpStatusCode status,
-            Task task,
-            String message)
-    {
-        log.info("{}: {}", message, task);
-
-        var responseObj = new ApiResponse<Task>(task, message);
-        return ResponseEntity.status(status).body(responseObj);
+    @Override
+    protected Logger getLogger() {
+        return log;
     }
 }

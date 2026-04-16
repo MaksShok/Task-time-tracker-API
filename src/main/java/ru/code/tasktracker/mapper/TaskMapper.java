@@ -17,6 +17,9 @@ public interface TaskMapper
     @Select("SELECT * FROM tasks WHERE id = #{id}")
     public Task findById(long id);
 
+    @Select("SELECT 1 FROM tasks WHERE id = #{id} LIMIT 1")
+    Integer existsById(@Param("id") long id);
+
     @Update("UPDATE tasks SET status = #{status} WHERE id = #{id}")
     public void updateStatus(@Param("id") long id, @Param("status") TaskStatus status);
 
