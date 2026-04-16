@@ -12,13 +12,6 @@ public class GlobalExceptionHandler
 {
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleAnyException(Exception e)
-    {
-        log.error("Handle exception ", e);
-        return ResponseEntity.status(500).body(e.getMessage());
-    }
-
     @ExceptionHandler(exception = {
             IllegalArgumentException.class,
             ValidationFailedException.class})
@@ -28,11 +21,18 @@ public class GlobalExceptionHandler
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 
-    @ExceptionHandler(ValidationFailedException.class)
+    @ExceptionHandler(ObjectProcessingException.class)
     public ResponseEntity<String> handleDataProcessingException(Exception e)
     {
         log.warn("Processing error: {}", e.getMessage());
         return ResponseEntity.status(500).body(e.getMessage());
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleAnyException(Exception e)
+    {
+        log.error("Unexpected error", e);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal error");
     }
 
 }
