@@ -61,8 +61,8 @@ class TestTimeRecordService
         assertEquals(42, result.getId());
         assertEquals(taskId, result.getTaskId());
         assertEquals(employeeId, result.getEmployeeId());
-        assertEquals(startTime, result.getStartTime());
-        assertEquals(endTime, result.getEndTime());
+        assertEquals(startTime, result.getStartDateTime());
+        assertEquals(endTime, result.getEndDateTime());
         assertEquals(description, result.getWorkDescription());
 
         Mockito.verify(taskService).isTaskExists(taskId);

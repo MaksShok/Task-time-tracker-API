@@ -23,19 +23,18 @@ public interface TaskMapper
     @Update("UPDATE tasks SET status = #{status} WHERE id = #{id}")
     public void updateStatus(@Param("id") long id, @Param("status") TaskStatus status);
 
-    @Insert("INSERT INTO time_records(employee_id, task_id, start_time, end_time, work_description) " +
-            "VALUES(#{employeeId}, #{taskId}, #{startTime}, #{endTime}, #{workDescription})")
+    @Insert("INSERT INTO time_records(employee_id, task_id, start_date_time, end_date_time, work_description) " +
+            "VALUES(#{employeeId}, #{taskId}, #{startDateTime}, #{endDateTime}, #{workDescription})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
-    public void insertTimeRecord(TimeRecord record);
+    void insertTimeRecord(TimeRecord record);
 
-    // 5. Получить записи о времени за период для конкретного сотрудника
     @Select("SELECT * FROM time_records " +
             "WHERE employee_id = #{employeeId} " +
-            "AND start_time >= #{startDate} " +
-            "AND end_time <= #{endDate}")
-    public List<TimeRecord> findTimeRecordsByEmployeeAndPeriod(
+            "AND start_date_time >= #{startDateTime} " +
+            "AND end_date_time <= #{endDateTime}")
+    List<TimeRecord> findTimeRecordsByEmployeeAndPeriod(
             @Param("employeeId") long employeeId,
-            @Param("startDate") LocalDateTime startDate,
-            @Param("endDate") LocalDateTime endDate
+            @Param("startDateTime") LocalDateTime startDate,
+            @Param("endDateTime") LocalDateTime endDate
     );
 }

@@ -7,8 +7,8 @@ public class TimeRecord
     private long id;
     private long employeeId;
     private long taskId;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private LocalDateTime startDateTime;
+    private LocalDateTime endDateTime;
     private String workDescription;
 
     public long getId() {
@@ -35,20 +35,20 @@ public class TimeRecord
         this.taskId = taskId;
     }
 
-    public LocalDateTime getStartTime() {
-        return startTime;
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
+    public void setStartDateTime(LocalDateTime startDateTime) {
+        this.startDateTime = startDateTime;
     }
 
-    public LocalDateTime getEndTime() {
-        return endTime;
+    public LocalDateTime getEndDateTime() {
+        return endDateTime;
     }
 
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
+    public void setEndDateTime(LocalDateTime endDateTime) {
+        this.endDateTime = endDateTime;
     }
 
     public String getWorkDescription() {

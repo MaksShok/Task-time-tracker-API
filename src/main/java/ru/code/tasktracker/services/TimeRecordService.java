@@ -41,8 +41,8 @@ public class TimeRecordService
         var record = new TimeRecord();
         record.setTaskId(taskId);
         record.setEmployeeId(requestInfo.getEmployeeId());
-        record.setStartTime(startDateTime);
-        record.setEndTime(endDateTime);
+        record.setStartDateTime(startDateTime);
+        record.setEndDateTime(endDateTime);
         record.setWorkDescription(requestInfo.getWorkDescription());
 
         mapper.insertTimeRecord(record);
