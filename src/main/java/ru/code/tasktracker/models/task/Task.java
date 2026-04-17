@@ -14,6 +14,15 @@ public class Task
         this.status = TaskStatus.NEW;
     }
 
+    //constructor only for test!!!
+    public Task(long id, String name, String description)
+    {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.status = TaskStatus.NEW;
+    }
+
     public long getId() {
         return id;
     }
@@ -53,6 +62,18 @@ public class Task
                 ", description='" + description + '\'' +
                 ", status=" + status +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (!(o instanceof Task)) return false;
+        Task task = (Task) o;
+        return id == task.id
+                && name == task.name
+                && description == task.description
+                && status == task.status;
     }
 }
 

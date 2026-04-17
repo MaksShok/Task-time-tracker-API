@@ -10,11 +10,11 @@ public class CreateTimeRecordRequestInfo
 {
     @NotNull(message = "Employee ID must not be null")
     @Positive(message = "Employee ID must be positive")
-    private Long employeeId;
+    private long employeeId;
 
     @NotNull(message = "Task ID must not be null")
     @Positive(message = "Task ID must be positive")
-    private Long taskId;
+    private long taskId;
 
     @NotNull(message = "Start time must not be null")
     private LocalDateTime startTime;
@@ -26,8 +26,8 @@ public class CreateTimeRecordRequestInfo
     private String workDescription;
 
     public CreateTimeRecordRequestInfo(
-            Long employeeId,
-            Long taskId,
+            long employeeId,
+            long taskId,
             LocalDateTime startTime,
             LocalDateTime endTime,
             String workDescription)
@@ -39,7 +39,7 @@ public class CreateTimeRecordRequestInfo
         this.workDescription = workDescription;
     }
 
-    public Long getEmployeeId() {
+    public long getEmployeeId() {
         return employeeId;
     }
 
@@ -47,7 +47,7 @@ public class CreateTimeRecordRequestInfo
         this.employeeId = employeeId;
     }
 
-    public Long getTaskId() {
+    public long getTaskId() {
         return taskId;
     }
 
