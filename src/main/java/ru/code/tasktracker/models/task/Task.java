@@ -14,15 +14,6 @@ public class Task
         this.status = TaskStatus.NEW;
     }
 
-    //constructor only for test!!!
-    public Task(long id, String name, String description)
-    {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.status = TaskStatus.NEW;
-    }
-
     public long getId() {
         return id;
     }

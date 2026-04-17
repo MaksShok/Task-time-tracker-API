@@ -29,9 +29,9 @@ class TestTaskService
     static Stream<Arguments> provideTestTasks()
     {
         return Stream.of(
-                Arguments.of(new Task(1, "Задача 1", "Описание 1")),
-                Arguments.of(new Task(2, "Задача 2", "Описание 2")),
-                Arguments.of(new Task(3, "Задача 3", "Описание 3"))
+                Arguments.of( new Task("Задача 1", "Описание 1") {{setId(1);}}),
+                Arguments.of(new Task("Задача 2", "Описание 2") {{setId(2);}}),
+                Arguments.of(new Task("Задача 3", "Описание 3") {{setId(3);}})
         );
     }
 
