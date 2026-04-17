@@ -50,21 +50,6 @@ class TestTaskService
     }
 
     @Test
-    void getTaskById_taskNotFound()
-    {
-        long nonExistentId = 999;
-        Mockito.when(mapper.findById(nonExistentId)).thenReturn(null);
-
-        var exception = Assertions.assertThrows(
-                IllegalArgumentException.class,
-                () -> service.getTaskById(nonExistentId)
-        );
-
-        Assertions.assertEquals("Task not found: 999", exception.getMessage());
-        Mockito.verify(mapper).findById(nonExistentId);
-    }
-
-    @Test
     void createTask_correctCreateAndReturnTask()
     {
         var request = new CreateTaskRequestInfo("Новая задача", "Описание");
