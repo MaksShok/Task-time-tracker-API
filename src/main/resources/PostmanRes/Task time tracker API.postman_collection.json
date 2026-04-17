@@ -1,0 +1,271 @@
+{
+  "info": {
+    "_postman_id": "d2c0f0e0-213d-4f60-9e24-06ee0641fa6f",
+    "name": "Task time tracker API",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54050581",
+    "_collection_link": "https://go.postman.co/collection/54050581-d2c0f0e0-213d-4f60-9e24-06ee0641fa6f?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Create task №1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Купить молоко\",\r\n  \"description\": \"Сходить в магазин до 20:00\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/task",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "task"
+          ]
+        },
+        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+      },
+      "response": []
+    },
+    {
+      "name": "Create task №2",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Решить тестовое\",\r\n  \"description\": \"Решить тестовое за 5 дней\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/task",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "task"
+          ]
+        },
+        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+      },
+      "response": []
+    },
+    {
+      "name": "Invalid create task",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"\",\r\n  \"description\": \"Описание есть, но имени нет\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/task",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "task"
+          ]
+        },
+        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+      },
+      "response": []
+    },
+    {
+      "name": "Create time-record",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"employeeId\": 1,\r\n  \"taskId\": 2,\r\n  \"startTime\": \"2026-04-17T10:00:00\",\r\n  \"endTime\": \"2026-04-17T20:00:00\",\r\n  \"workDescription\": \"Разработка API для задач\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/time-record",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "time-record"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Invalid Create time-record",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"employeeId\": 101,\r\n  \"taskId\": 1,\r\n  \"startTime\": \"2026-04-17T17:00:00\",\r\n  \"endTime\": \"2026-03-17T09:00:00\",\r\n  \"workDescription\": \"Разработка API для задач\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/time-record",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "time-record"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get time-records by employeeID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/time-record?employeeId=1&startDate=2026-04-01T00:00:00&endDate=2026-04-30T23:59:59",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "time-record"
+          ],
+          "query": [
+            {
+              "key": "employeeId",
+              "value": "1"
+            },
+            {
+              "key": "startDate",
+              "value": "2026-04-01T00:00:00"
+            },
+            {
+              "key": "endDate",
+              "value": "2026-04-30T23:59:59"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get task by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/task/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "task",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update task status",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"status\": \"IN_PROGRESS\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/task//status/update",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "task",
+            "",
+            "status",
+            "update"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
