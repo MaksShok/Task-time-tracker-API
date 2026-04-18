@@ -22,13 +22,12 @@
 
 ## 🛠 Технологии
 
-- Java 17
+- Java 21
 - Spring Boot 3.5.13
 - MyBatis
 - Maven
 - H2 (встроенная БД)
 - JUnit 5 + Mockito (unit-тесты)
-- SpringDoc OpenAPI (Swagger)
 - Валидация входных данных через Bean Validation в контроллерах
 - Глобальная обработка ошибок через `@RestControllerAdvice`
 
